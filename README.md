@@ -12,3 +12,45 @@ Para solucionar posibles _shortcuts_ rotos en el launcher de Android existen 3 p
 * Hacer que la actividad destino de la aplicación (a la que apunta el _shortcut_)  vuelva a existir. Esto significa que si un _shortcut_ apunta al paquete _com.ejemplo.app1_ con la actividad _MainActivity_, debemos crear la actividad en cuestión. Una vez que creamos _com.ejemplo.app1.MainActivity_ podemos hacer con esta misma lo que queramos, por ejemplo, redireccionar a otra actividad nueva.
 * La peor solución es solamente crear un nuevo _shortcut_ a la aplicación deseada, pero esto implica dejar el _shortcut_ roto en el _launcher_.
 
+##Snippets
+```java
+private void addShortcut() {
+  	//Adding shortcut for MainActivity 
+  	//on Home screen
+	Intent shortcutIntent = new Intent();
+	shortcutIntent.setClassName("com.example.app1", "com.example.app1.MainActivity");
+	shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+	Intent addIntent = new Intent();
+	addIntent
+			.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+//		addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
+//		addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+//				Intent.ShortcutIconResource.fromContext(getApplicationContext(),
+//						R.drawable.ic_launcher));
+
+	addIntent
+			.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+	getApplicationContext().sendBroadcast(addIntent);
+}
+
+private void removeShortcut() {
+    	
+  	//Deleting shortcut for MainActivity 
+  	//on Home screen
+//		Intent shortcutIntent = new Intent(getApplicationContext(),
+//				MainActivity.class);
+  	Intent shortcutIntent = new Intent();
+  	shortcutIntent.setClassName("com.example.app1", "com.example.app1.MainActivity");
+	shortcutIntent.setAction(Intent.ACTION_MAIN);
+	
+	Intent addIntent = new Intent();
+	addIntent
+			.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+//		addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
+
+	addIntent
+			.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
+	getApplicationContext().sendBroadcast(addIntent);
+}
+```
