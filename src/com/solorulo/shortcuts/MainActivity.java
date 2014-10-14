@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     	//Adding shortcut for MainActivity 
     	//on Home screen
 		Intent shortcutIntent = new Intent();
-		shortcutIntent.setClassName("com.nzuri.spot", "com.nzuri.spot.SplashActivity");
+		shortcutIntent.setClassName("com.example.app1", "com.example.app1.MainActivity");
 		shortcutIntent.setAction(Intent.ACTION_MAIN);
 
 		Intent addIntent = new Intent();
@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 //		Intent shortcutIntent = new Intent(getApplicationContext(),
 //				MainActivity.class);
     	Intent shortcutIntent = new Intent();
-    	shortcutIntent.setClassName("com.nzuri.spot", "com.nzuri.spot.SplashActivity");
+    	shortcutIntent.setClassName("com.example.app1", "com.example.app1.MainActivity");
 		shortcutIntent.setAction(Intent.ACTION_MAIN);
 		
 		Intent addIntent = new Intent();
